@@ -11,10 +11,10 @@ PyCharm<br>
 Jupyter Notebook<br>
 Git Bash (在Windows平台上跑shell脚本用)
 ### 试验数据
-ERNIE官方文档中提供的数据 - [link](https://github.com/jhmclean/fork_ERNIE/blob/develop/README.zh.md#%E4%B8%AD%E6%96%87%E6%95%B0%E6%8D%AE)
+ERNIE官方文档中提供的数据 - [link](https://github.com/PaddlePaddle/ERNIE/blob/develop/README.zh.md#%E4%B8%AD%E6%96%87%E6%95%B0%E6%8D%AE)
 
 ### 预训练模型
-ERNIE 1.0 中文 Base 模型(max_len=512) - [link](https://github.com/jhmclean/fork_ERNIE/blob/develop/README.zh.md#%E9%A2%84%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B%E4%B8%8B%E8%BD%BD)
+ERNIE 1.0 中文 Base 模型(max_len=512) - [link](https://github.com/PaddlePaddle/ERNIE/blob/develop/README.zh.md#%E9%A2%84%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B%E4%B8%8B%E8%BD%BD)
 ## 试验过程简述
 ### 主要改动文件
 - ernie/run_sequence_labeling.py
@@ -100,6 +100,6 @@ loss, f1, precision, recall
 - 脚本运行中，程序会不断向./checkpoints文件夹内写入learning_curves.pkl和test_result文件。打开jzhang_docs/results_visualization.ipynb，可载入这两项文件中的数据并做相关的可视化
 
 ## 主要参考
-- ERNIE官方GitHub仓库上的中文文档，特别是命名实体识别（序列标注）部分 - [link](https://github.com/jhmclean/fork_ERNIE/blob/develop/README.zh.md)
+- ERNIE官方GitHub仓库上的中文文档，特别是命名实体识别（序列标注）部分 - [link](https://github.com/PaddlePaddle/ERNIE/blob/develop/README.zh.md)
 - 百度飞桨官网 - [link](https://www.paddlepaddle.org.cn/)
 - 这可能是第一篇比较全的ERNIE踩坑笔记 - [link](https://blog.csdn.net/a1058420631/article/details/90240285)
