@@ -137,19 +137,21 @@ def evaluate(exe,
              dev_count=1):
     fetch_list = [
         graph_vars["num_infer"].name, graph_vars["num_label"].name,
-        graph_vars["num_correct"].name
+        graph_vars["num_correct"].name,
+        graph_vars["loss"].name
     ]
 
-    total_label, total_infer, total_correct = 0.0, 0.0, 0.0
+    total_label, total_infer, total_correct, total_loss = 0.0, 0.0, 0.0, np.array([])
     time_begin = time.time()
     pyreader.start()
     while True:
         try:
-            np_num_infer, np_num_label, np_num_correct = exe.run(program=program,
+            np_num_infer, np_num_label, np_num_correct, np_loss = exe.run(program=program,
                                                     fetch_list=fetch_list)
             total_infer += np.sum(np_num_infer)
             total_label += np.sum(np_num_label)
             total_correct += np.sum(np_num_correct)
+            total_loss = np.concatenate((total_loss, np_loss))
 
         except fluid.core.EOFException:
             pyreader.reset()
@@ -158,9 +160,10 @@ def evaluate(exe,
     precision, recall, f1 = calculate_f1(total_label, total_infer,
                                          total_correct)
     time_end = time.time()
-    return  \
-        "[evaluation] f1: %f, precision: %f, recall: %f, elapsed time: %f s" \
-        % (f1, precision, recall, time_end - time_begin)
+    # return  \
+    #     "[evaluation] f1: %f, precision: %f, recall: %f, elapsed time: %f s" \
+    #     % (f1, precision, recall, time_end - time_begin)
+    return np.nanmean(total_loss), f1, precision, recall, time_end - time_begin
 
 
 def chunk_predict(np_inputs, np_probs, np_lens, dev_count=1):
